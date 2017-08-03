@@ -24,7 +24,6 @@ import javax.ws.rs.HeaderParam;
 @Controller
 @RequestMapping("/user")
 public class RestController {
-
     @Autowired
     DataServices dataServices;
 
@@ -40,7 +39,6 @@ public class RestController {
             // e.printStackTrace();
             return new Status(0, e.toString());
         }
-
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -79,7 +77,6 @@ public class RestController {
         } catch (Exception e) {
             return new Status(0, e.toString());
         }
-
     }
 
     @RequestMapping(value = "auth", method = RequestMethod.GET)

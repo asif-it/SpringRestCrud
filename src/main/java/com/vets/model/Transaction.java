@@ -21,47 +21,57 @@ public class Transaction implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "transaction_id")
-    private long transactionId;
+    private long transaction_id;
 
     @Column(name = "buyer_id")
-    private long buyerId;
+    private long buyer_id;
 
     @Column(name = "seller_id")
-    private long sellerId;
+    private long seller_id;
 
     @Column(name = "price")
     private double price;
 
     @Column(name = "transaction_date")
-    private Date transactionDate;
+    private Date transaction_date;
 
-    @Column(name = "vechile_id")
-    private String vechileId;
+    @Column(name = "vehicle_id")
+    private int vehicle_id;
 
+    public Transaction(){
+    }
+
+    public Transaction(long transaction_id,long buyer_id,long seller_id,double price,Date transaction_date,int vehicle_id){
+        this.transaction_id=transaction_id;
+        this.buyer_id=buyer_id;
+        this.seller_id=seller_id;
+        this.price=price;
+        this.transaction_date=transaction_date;
+        this.vehicle_id=vehicle_id;
+    }
     
-
-    public long getTransactionId() {
-        return transactionId;
+    public long getTransaction_id() {
+        return transaction_id;
     }
 
-    public void setTransactionId(long transactionId) {
-        this.transactionId = transactionId;
+    public void setTransaction_id(long transaction_id) {
+        this.transaction_id = transaction_id;
     }
 
-    public long getBuyerId() {
-        return buyerId;
+    public long getBuyer_id() {
+        return buyer_id;
     }
 
-    public void setBuyerId(long buyerId) {
-        this.buyerId = buyerId;
+    public void setBuyer_id(long buyer_id) {
+        this.buyer_id = buyer_id;
     }
 
-    public long getSellerId() {
-        return sellerId;
+    public long getSeller_id() {
+        return seller_id;
     }
 
-    public void setSellerId(long sellerId) {
-        this.sellerId = sellerId;
+    public void setSeller_id(long seller_id) {
+        this.seller_id = seller_id;
     }
 
     public double getPrice() {
@@ -72,22 +82,23 @@ public class Transaction implements Serializable {
         this.price = price;
     }
 
-    public Date getTransactionDate() {
-        return transactionDate;
+    public Date getTransaction_date() {
+        return transaction_date;
     }
 
-    public void setTransactionDate(Date transactionDate) {
-        this.transactionDate = transactionDate;
+    public void setTransaction_date(Date transaction_date) {
+        this.transaction_date = transaction_date;
     }
 
-    public String getVechileId() {
-        return vechileId;
+    public int getvehicle_id() {
+        return vehicle_id;
     }
 
-    public void setVechileId(String vechileId) {
-        this.vechileId = vechileId;
+    public void setvehicle_id(int vehicle_id) {
+        this.vehicle_id = vehicle_id;
     }
-
-    public void commit() {
+    
+    public void commit(){
+        
     }
 }

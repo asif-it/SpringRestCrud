@@ -9,100 +9,150 @@ import java.util.Date;
 @Entity
 @Table(name = "Cars")
 public class Car {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int id;
+
     @Column(name = "city")
-    String city;
+    private String city;
+
     @Column(name = "fuel")
-    Fuel fuel;
-    @Column(name = "odoReading")
-    String odoReading;
+    private Fuel fuel;
+
+    @Column(name = "odo_reading")
+    private String odo_reading;
+
     @Column(name = "color")
-    String color;
-    @Column(name = "noOfOwners")
-    int noOfOwners;
-    @Column(name = "powerSteering")
-    boolean powerSteering;
+    private String color;
+
+    @Column(name = "no_of_owners")
+    private int no_of_owners;
+
+    @Column(name = "power_steering")
+    private boolean power_steering;
+
     @Column(name = "insurance")
-    String insurance;
-    @Column(name = "ensuranceExpiry")
-    Date ensuranceExpiry;
-    @Column(name = "manufacturingYear")
-    int manufacturingYear;
-    @Column(name = "registrationData")
-    Date registrationData;
-    @Column(name = "registrationType")
-    String registrationType;
-    @Column(name = "RTO_Location")
-    String RTO_Location;
-    @Column(name = "dateOfRegOnWebsite")
-    Date dateOfRegOnWebsite;
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    int id;
-    public Car(int id,String city, Fuel fuel, String odoReading, String color, int noOfOwners, boolean powerSteering, String insurance, Date ensuranceExpiry, int manufacturingYear, Date registrationData, String registrationType, String RTO_Location, Date dateOfRegOnWebsite) {
-        this.id = id;
-        this.city = city;
-        this.fuel = fuel;
-        this.odoReading = odoReading;
-        this.color = color;
-        this.noOfOwners = noOfOwners;
-        this.powerSteering = powerSteering;
-        this.insurance = insurance;
-        this.ensuranceExpiry = ensuranceExpiry;
-        this.manufacturingYear = manufacturingYear;
-        this.registrationData = registrationData;
-        this.registrationType = registrationType;
-        this.RTO_Location = RTO_Location;
-        this.dateOfRegOnWebsite = dateOfRegOnWebsite;
+    private String insurance;
+
+    @Column(name = "insurance_expiry")
+    private Date insurance_expiry;
+
+    @Column(name = "manufacturing_year")
+    private int manufacturing_year;
+
+    @Column(name = "registration_date")
+    private Date registration_date;
+
+    @Column(name = "registration_type")
+    private String registration_type;
+
+    @Column(name = "rto_location")
+    private String rto_location;
+
+    @Column(name = "date_of_reg_on_website")
+    private Date date_of_reg_on_website;
+
+    @Column(name="mileage")
+    private double mileage;
+
+    @Column(name = "seating_capacity")
+    private int seating_capacity;
+
+    @Column(name = "owned_by")
+    private int owned_by;
+
+    public Car(){
     }
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    public int getId() {
-        return id;
+    public Car(String city,Fuel fuel,String odo_reading,String color,int no_of_owners,boolean power_steering,String insurance,Date insurance_expiry,int manufacturing_year,Date registration_date,String registration_type,String rto_location,Date date_of_reg_on_website,Double mileage,int seating_capacity,int owned_by){
+      this.city=city;
+      this.fuel=fuel;
+      this.odo_reading=odo_reading;
+      this.color=color;
+      this.no_of_owners=no_of_owners;
+      this.power_steering=power_steering;
+      this.insurance=insurance;
+      this.insurance_expiry=insurance_expiry;
+      this.manufacturing_year=manufacturing_year;
+      this.registration_date=registration_date;
+      this.registration_type=registration_type;
+      this.rto_location=rto_location;
+      this.date_of_reg_on_website=date_of_reg_on_website;
+      this.mileage=mileage;
+      this.seating_capacity=seating_capacity;
+      this.owned_by=owned_by;
+    }
+    public int getOwned_by() {
+        return owned_by;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    public Fuel getFuel() {
-        return fuel;
-    }
-    public void setFuel(Fuel fuel) {
-        this.fuel = fuel;
+    public void setOwned_by(int owned_by) {
+        this.owned_by = owned_by;
     }
 
-    public String getOdoReading() {
-        return odoReading;
+    public int getSeating_capacity() {
+        return seating_capacity;
     }
 
-    public void setOdoReading(String odoReading) {
-        this.odoReading = odoReading;
+    public void setSeating_capacity(int seating_capacity) {
+        this.seating_capacity = seating_capacity;
     }
 
-    public String getColor() {
-        return color;
+    public double getMileage() {
+        return mileage;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setMileage(double mileage) {
+        this.mileage = mileage;
     }
 
-    public int getNoOfOwners() {
-        return noOfOwners;
+    public Date getDate_of_regOnWebsite() {
+        return date_of_reg_on_website;
     }
 
-    public void setNoOfOwners(int noOfOwners) {
-        this.noOfOwners = noOfOwners;
+    public void setDate_of_regOnWebsite(Date date_of_regOnWebsite) {
+        this.date_of_reg_on_website = date_of_regOnWebsite;
     }
 
-    public boolean isPowerSteering() {
-        return powerSteering;
+    public String getRto_location() {
+        return rto_location;
     }
 
-    public void setPowerSteering(boolean powerSteering) {
-        this.powerSteering = powerSteering;
+    public void setRto_location(String rto_location) {
+        this.rto_location = rto_location;
+    }
+
+    public String getRegistration_type() {
+        return registration_type;
+    }
+
+    public void setRegistration_type(String registration_type) {
+        this.registration_type = registration_type;
+    }
+
+    public Date getRegistration_data() {
+        return registration_date;
+    }
+
+    public void setRegistration_data(Date registration_data) {
+        this.registration_date = registration_data;
+    }
+
+    public int getManufacturing_year() {
+        return manufacturing_year;
+    }
+
+    public void setManufacturing_year(int manufacturing_year) {
+        this.manufacturing_year = manufacturing_year;
+    }
+
+    public Date getInsurance_expiry() {
+        return insurance_expiry;
+    }
+
+    public void setInsurance_expiry(Date insurance_expiry) {
+        this.insurance_expiry = insurance_expiry;
     }
 
     public String getInsurance() {
@@ -113,60 +163,63 @@ public class Car {
         this.insurance = insurance;
     }
 
-    public Date getEnsuranceExpiry() {
-        return ensuranceExpiry;
+    public boolean isPower_steering() {
+        return power_steering;
     }
 
-    public void setEnsuranceExpiry(Date ensuranceExpiry) {
-        this.ensuranceExpiry = ensuranceExpiry;
+    public void setPower_steering(boolean power_steering) {
+        this.power_steering = power_steering;
     }
 
-    public int getManufacturingYear() {
-        return manufacturingYear;
+    public int getNo_of_owners() {
+        return no_of_owners;
     }
 
-    public void setManufacturingYear(int manufacturingYear) {
-        this.manufacturingYear = manufacturingYear;
+    public void setNo_of_owners(int no_of_owners) {
+        this.no_of_owners = no_of_owners;
     }
 
-    public Date getRegistrationData() {
-        return registrationData;
+    public String getColor() {
+        return color;
     }
 
-    public void setRegistrationData(Date registrationData) {
-        this.registrationData = registrationData;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public String getRegistrationType() {
-        return registrationType;
+    public String getOdo_reading() {
+        return odo_reading;
     }
 
-    public void setRegistrationType(String registrationType) {
-        this.registrationType = registrationType;
+    public void setOdo_reading(String odo_reading) {
+        this.odo_reading = odo_reading;
     }
 
-    public String getRTO_Location() {
-        return RTO_Location;
+    public Fuel getFuel() {
+        return fuel;
     }
 
-    public void setRTO_Location(String RTO_Location) {
-        this.RTO_Location = RTO_Location;
-    }
-
-    public Date getDateOfRegOnWebsite() {
-        return dateOfRegOnWebsite;
-    }
-
-    public void setDateOfRegOnWebsite(Date dateOfRegOnWebsite) {
-        this.dateOfRegOnWebsite = dateOfRegOnWebsite;
+    public void setFuel(Fuel fuel) {
+        this.fuel = fuel;
     }
 
     public String getCity() {
-
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void commit(){
+
     }
 }
