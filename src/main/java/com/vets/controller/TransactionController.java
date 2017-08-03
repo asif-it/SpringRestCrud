@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/transaction")
 public class TransactionController {
-
     @Autowired
     TransactionService transactionService;
 
@@ -36,7 +35,6 @@ public class TransactionController {
             // e.printStackTrace();
             return new Status(0, e.toString());
         }
-
     }
 
     @RequestMapping(value = "/{transactionid}", method = RequestMethod.GET)
@@ -55,7 +53,6 @@ public class TransactionController {
     @RequestMapping(value = "/transactionlist", method = RequestMethod.GET)
     public @ResponseBody
     List<Transaction> getTransaction() {
-
         List<Transaction> transactionList = null;
         try {
             transactionList = transactionService.getTransactionList();
@@ -70,13 +67,11 @@ public class TransactionController {
     @RequestMapping(value = "delete/{transactionid}", method = RequestMethod.GET)
     public @ResponseBody
     Status deleteTransaction(@PathVariable("id") long transactionId) {
-
         try {
             transactionService.deleteTransaction(transactionId);
             return new Status(1, "Transaction deleted Successfully !");
         } catch (Exception e) {
             return new Status(0, e.toString());
         }
-
     }
 }

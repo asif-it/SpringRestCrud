@@ -41,6 +41,13 @@ public class DataDaoImpl implements DataDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
+
+
+
+
+
+
+
 	public List<User> getEntityList() throws Exception {
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();

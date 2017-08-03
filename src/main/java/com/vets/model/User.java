@@ -22,10 +22,10 @@ public class User implements Serializable {
 	private long id;
 
 	@Column(name = "first_name")
-	private String firstName;
+	private String first_name;
 
 	@Column(name = "last_name")
-	private String lastName;
+	private String last_name;
 
 	@Column(name = "username")
 	private String username;
@@ -39,12 +39,28 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(String firstName, String lastName, String username, String email, String phone) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public User(String first_name, String last_name, String username, String email, String phone) {
+		this.first_name = first_name;
+		this.last_name = last_name;
 		this.username = username;
 		this.email = email;
 		this.phone = phone;
+	}
+
+	public String getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+	public String getLast_name() {
+		return last_name;
+	}
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
 	}
 
 	public String getUsername() {
@@ -53,30 +69,6 @@ public class User implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getEmail() {
@@ -93,5 +85,9 @@ public class User implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public void commit(){
+
 	}
 }
