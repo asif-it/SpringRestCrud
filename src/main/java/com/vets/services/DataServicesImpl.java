@@ -3,6 +3,7 @@ package com.vets.services;
 import java.util.List;
 
 import com.vets.model.User;
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vets.dao.DataDao;
@@ -32,4 +33,8 @@ public class DataServicesImpl implements DataServices {
 		return dataDao.deleteEntity(id);
 	}
 
+	@Override
+	public boolean isAuthenticated(String username, String password) throws Exception {
+		return dataDao.isAuthenticated(username, password);
+	}
 }

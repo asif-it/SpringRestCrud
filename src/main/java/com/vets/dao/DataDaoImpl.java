@@ -2,6 +2,7 @@ package com.vets.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -49,7 +50,7 @@ public class DataDaoImpl implements DataDao {
 		session.close();
 		return userList;
 	}
-	
+
 	@Override
 	public boolean deleteEntity(long id)
 			throws Exception {
@@ -62,4 +63,16 @@ public class DataDaoImpl implements DataDao {
 		return false;
 	}
 
+	@Override
+	public boolean isAuthenticated(String username, String password)
+			throws Exception {
+		session = sessionFactory.openSession();
+//		tx = session.getTransaction();
+		session.beginTransaction();
+		Query query = session.createQuery("FROM USERS U where U.first_name=:username and U.password=:password");
+		query.setParameter("username", username);
+		query.setParameter("password", password);
+//		tx.commit();
+		return (query.list().size()>0);
+	}
 }

@@ -6,8 +6,9 @@ import com.vets.model.User;
 
 public interface DataDao {
 
-	public boolean addEntity(User user) throws Exception;
-	public User getEntityById(long id) throws Exception;
-	public List<User> getEntityList() throws Exception;
-	public boolean deleteEntity(long id) throws Exception;
+	boolean addEntity(User user) throws Exception;
+	User getEntityById(long id) throws Exception;
+	List<User> getEntityList() throws Exception;
+	boolean deleteEntity(long id) throws Exception;
+	boolean isAuthenticated(String username, String password) throws Exception;
 }

@@ -14,7 +14,6 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Table(name = "users")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -28,11 +27,33 @@ public class User implements Serializable {
 	@Column(name = "last_name")
 	private String lastName;
 
+	@Column(name = "username")
+	private String username;
+
 	@Column(name = "email")
 	private String email;
 
 	@Column(name = "phone")
 	private String phone;
+
+	public User() {
+	}
+
+	public User(String firstName, String lastName, String username, String email, String phone) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.email = email;
+		this.phone = phone;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public long getId() {
 		return id;
