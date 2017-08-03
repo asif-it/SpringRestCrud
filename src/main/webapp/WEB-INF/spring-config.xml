@@ -24,6 +24,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.vets.model.User</value>
+				<value>com.vets.model.Transaction</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -44,4 +45,7 @@
 
 	<bean id="dataDao" class="com.vets.dao.DataDaoImpl"></bean>
 	<bean id="dataServices" class="com.vets.services.DataServicesImpl"></bean>
+
+	<bean id="transactionDao" class="com.vets.dao.TransactionDaoImpl"></bean>
+	<bean id="transactionServices" class="com.vets.services.TransactionServiceImpl"></bean>
 </beans>
