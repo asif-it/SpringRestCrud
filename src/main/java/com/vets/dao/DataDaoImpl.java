@@ -42,12 +42,6 @@ public class DataDaoImpl implements DataDao {
 	@SuppressWarnings("unchecked")
 	@Override
 
-
-
-
-
-
-
 	public List<User> getEntityList() throws Exception {
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
@@ -76,7 +70,7 @@ public class DataDaoImpl implements DataDao {
 		session = sessionFactory.openSession();
 //		tx = session.getTransaction();
 		session.beginTransaction();
-		Query query = session.createQuery("FROM USERS U where U.first_name=:username and U.password=:password");
+		Query query = session.createQuery("FROM users U where U.first_name=:username and U.password=:password");
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 //		tx.commit();

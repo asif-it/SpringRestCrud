@@ -14,6 +14,15 @@ public class Car {
     @Column(name = "id")
     private int id;
 
+    @Column(name="model_name")
+    private String model_name;
+
+    @Column(name="brand_name")
+    private String brand_name;
+
+    @Column(name="engine")
+    private String engine;
+
     @Column(name = "city")
     private String city;
 
@@ -65,7 +74,10 @@ public class Car {
     public Car(){
     }
 
-    public Car(String city,Fuel fuel,String odo_reading,String color,int no_of_owners,boolean power_steering,String insurance,Date insurance_expiry,int manufacturing_year,Date registration_date,String registration_type,String rto_location,Date date_of_reg_on_website,Double mileage,int seating_capacity,int owned_by){
+    public Car(String model_name,String brand_name,String engine,String city,Fuel fuel,String odo_reading,String color,int no_of_owners,boolean power_steering,String insurance,Date insurance_expiry,int manufacturing_year,Date registration_date,String registration_type,String rto_location,Date date_of_reg_on_website,Double mileage,int seating_capacity,int owned_by){
+      this.model_name=model_name;
+      this.brand_name=brand_name;
+      this.engine=engine;
       this.city=city;
       this.fuel=fuel;
       this.odo_reading=odo_reading;
@@ -221,5 +233,21 @@ public class Car {
 
     public void commit(){
 
+    }
+
+    public String getBrand_name() {
+        return brand_name;
+    }
+
+    public void setBrand_name(String brand_name) {
+        this.brand_name = brand_name;
+    }
+
+    public String getModel_name() {
+        return model_name;
+    }
+
+    public void setModel_name(String model_name) {
+        this.model_name = model_name;
     }
 }

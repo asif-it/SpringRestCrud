@@ -37,7 +37,7 @@ public class TransactionController {
         }
     }
 
-    @RequestMapping(value = "/{transactionid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{transactionid}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Transaction getTransaction(@PathVariable("transactionid") long transactionId) {
         Transaction transaction = null;
@@ -50,7 +50,7 @@ public class TransactionController {
         return transaction;
     }
 
-    @RequestMapping(value = "/transactionlist", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<Transaction> getTransaction() {
         List<Transaction> transactionList = null;
@@ -64,7 +64,7 @@ public class TransactionController {
         return transactionList;
     }
 
-    @RequestMapping(value = "delete/{transactionid}", method = RequestMethod.GET)
+    @RequestMapping(value = "delete/{transactionid}", method = RequestMethod.GET,consumes = MediaType.TEXT_PLAIN_VALUE)
     public @ResponseBody
     Status deleteTransaction(@PathVariable("id") long transactionId) {
         try {

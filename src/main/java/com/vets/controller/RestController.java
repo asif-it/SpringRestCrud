@@ -31,7 +31,7 @@ public class RestController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Status addEmployee(@RequestBody User user) {
+    Status addUser(@RequestBody User user) {
         try {
             dataServices.addEntity(user);
             return new Status(1, "User added Successfully !");
@@ -41,9 +41,9 @@ public class RestController {
         }
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    User getEmployee(@PathVariable("id") long id) {
+    User getUser(@PathVariable("id") long id) {
         User user = null;
         try {
             user = dataServices.getEntityById(id);
@@ -54,9 +54,9 @@ public class RestController {
         return user;
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    List<User> getEmployee() {
+    List<User> getUsers() {
         List<User> userList = null;
         try {
             userList = dataServices.getEntityList();
@@ -68,7 +68,7 @@ public class RestController {
         return userList;
     }
 
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET,consumes = MediaType.TEXT_PLAIN_VALUE)
     public @ResponseBody
     Status deleteEmployee(@PathVariable("id") long id) {
         try {
@@ -79,7 +79,7 @@ public class RestController {
         }
     }
 
-    @RequestMapping(value = "auth", method = RequestMethod.GET)
+    @RequestMapping(value = "auth", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Boolean login(@HeaderParam("Authorization") String authString) {
         String[] authParts = authString.split(" ");

@@ -26,7 +26,7 @@ public class CarController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Status addEmployee(@RequestBody Car car) {
+    Status addCar(@RequestBody Car car) {
         try {
             carService.addCar(car);
             return new Status(1, "Car added Successfully !");
@@ -37,9 +37,11 @@ public class CarController {
 
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Car getEmployee(@PathVariable("id") long id) {
+    Car getCar(@PathVariable("id") long id) {
         Car car = null;
         try {
             car = carService.getCarById(id);
@@ -50,7 +52,7 @@ public class CarController {
         return car;
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<Car> getCars() {
 
@@ -65,7 +67,7 @@ public class CarController {
         return carList;
     }
 
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Status deleteCar(@PathVariable("id") long id) {
 

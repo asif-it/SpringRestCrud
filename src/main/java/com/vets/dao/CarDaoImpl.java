@@ -2,6 +2,7 @@ package com.vets.dao;
 
 import com.vets.model.Car;
 import oracle.jrockit.jfr.parser.ChunkParser;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -42,11 +43,23 @@ public class CarDaoImpl implements CarDao {
     public List<Car> getEntityList() throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        List<Car> userList = session.createCriteria(Car.class)
+        List<Car> carList = session.createCriteria(Car.class)
                 .list();
         tx.commit();
         session.close();
-        return userList;
+        return carList;
+    }
+
+    @SuppressWarnings("unchecked")
+
+    public List<Car> getEntity(String name) throws Exception {
+        session=sessionFactory.openSession();
+        tx=session.beginTransaction();
+        List<Car> carList=session.createQuery("FROM CARS C where c.model_name like '%"+name+"'").list();
+        tx.commit();
+        session.close();
+
+        return carList;
     }
 
     @Override

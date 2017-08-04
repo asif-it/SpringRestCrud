@@ -21,16 +21,21 @@ public class CarServiceImpl implements CarService{
 
     @Override
     public Car getCarById(long carId) throws Exception {
-        return null;
+        return carDao.getEntityById(carId);
     }
 
     @Override
     public List<Car> getCarList() throws Exception {
-        return null;
+        return carDao.getEntityList();
     }
 
     @Override
     public boolean deleteCar(long carId) throws Exception {
-        return false;
+        return carDao.deleteEntity(carId);
+    }
+
+    @Override
+    public List<Car> getEntity(String name) throws Exception {
+        return carDao.getEntity(name);
     }
 }
