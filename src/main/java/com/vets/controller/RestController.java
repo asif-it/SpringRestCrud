@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.vets.dao.CarDao;
+import com.vets.model.Car;
 import com.vets.model.User;
 import org.apache.log4j.Logger;
 import com.vets.model.Status;
@@ -27,7 +29,8 @@ import javax.ws.rs.HeaderParam;
 public class RestController implements Serializable {
     @Autowired
     DataServices dataServices;
-
+    @Autowired
+    CarDao carDao;
     static final Logger logger = Logger.getLogger(RestController.class);
 
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -56,6 +59,19 @@ public class RestController implements Serializable {
         return user;
     }
 
+    @RequestMapping(value = "username/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    User getUser(@PathVariable("username") String username) {
+        User user = null;
+        try {
+            user = dataServices.getEntityByName(username);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<User> getUsers() {
@@ -72,7 +88,7 @@ public class RestController implements Serializable {
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET,consumes = MediaType.TEXT_PLAIN_VALUE)
     public @ResponseBody
-    Status deleteEmployee(@PathVariable("id") long id) {
+    Status deleteUser(@PathVariable("id") long id) {
         try {
             dataServices.deleteEntity(id);
             return new Status(1, "User deleted Successfully !");
@@ -105,5 +121,18 @@ public class RestController implements Serializable {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @RequestMapping(value = "/user-cars/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<Car> getMyCars(@PathVariable("username") String username) {
+        List<Car> carList = null;
+        try {
+            carList = carDao.getMyCars(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return carList;
     }
 }

@@ -24,6 +24,11 @@ public class DataServicesImpl implements DataServices {
 	}
 
 	@Override
+	public User getEntityByName(String username) throws Exception {
+		return dataDao.getEntityByName(username);
+	}
+
+	@Override
 	public List<User> getEntityList() throws Exception {
 		return dataDao.getEntityList();
 	}
