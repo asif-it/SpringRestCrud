@@ -10,10 +10,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/vets/model/Car.class" afterPath="$PROJECT_DIR$/target/classes/com/vets/model/Car.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/vets/model/User.class" afterPath="$PROJECT_DIR$/target/classes/com/vets/model/User.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vets/dao/CarDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/vets/dao/CarDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vets/model/Car.java" afterPath="$PROJECT_DIR$/src/main/java/com/vets/model/Car.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/vets/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/vets/model/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-config.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/spring-config.xml" afterPath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/spring-config.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -95,6 +91,7 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
+                <element signature="imports" expanded="false" />
                 <marker date="1501938449333" expanded="true" signature="3870:3871" ph="{...}" />
               </folding>
             </state>
@@ -1005,7 +1002,7 @@
       <option name="presentableId" value="Default" />
       <updated>1501678001223</updated>
       <workItem from="1501678005375" duration="1701000" />
-      <workItem from="1501957092052" duration="836000" />
+      <workItem from="1501957092052" duration="895000" />
     </task>
     <task id="LOCAL-00001" summary="Add Produces in all the controller and change in Car Model and User Model">
       <created>1501827647619</created>
@@ -1028,11 +1025,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501940209817</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="complete V 1.0">
+      <created>1501958005058</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1501958005058</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35930000" />
+    <option name="totallyTimeSpent" value="35989000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1598" height="858" extended-state="0" />
@@ -1088,7 +1092,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add Produces in all the controller and change in Car Model and User Model" />
     <MESSAGE value="Get By Uusername" />
-    <option name="LAST_COMMIT_MESSAGE" value="Get By Uusername" />
+    <MESSAGE value="complete V 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="complete V 1.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1127,6 +1132,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="false" />
             <marker date="1501938449333" expanded="true" signature="3870:3871" ph="{...}" />
           </folding>
         </state>
@@ -1188,6 +1194,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1224,6 +1231,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="false" />
             <marker date="1501938449333" expanded="true" signature="3870:3871" ph="{...}" />
           </folding>
         </state>
@@ -1264,6 +1272,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1386,6 +1395,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="false" />
             <marker date="1501938449333" expanded="true" signature="3870:3871" ph="{...}" />
           </folding>
         </state>
