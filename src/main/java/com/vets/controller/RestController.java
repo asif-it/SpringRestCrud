@@ -54,6 +54,19 @@ public class RestController {
         return user;
     }
 
+    @RequestMapping(value = "username/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    User getUser(@PathVariable("username") String username) {
+        User user = null;
+        try {
+            user = dataServices.getEntityByName(username);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<User> getUsers() {
@@ -70,7 +83,7 @@ public class RestController {
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET,consumes = MediaType.TEXT_PLAIN_VALUE)
     public @ResponseBody
-    Status deleteEmployee(@PathVariable("id") long id) {
+    Status deleteUser(@PathVariable("id") long id) {
         try {
             dataServices.deleteEntity(id);
             return new Status(1, "User deleted Successfully !");
