@@ -35,6 +35,16 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
+    public List<Car> getUsedCarList() throws Exception {
+        return carDao.getUsedEntityList();
+    }
+
+    @Override
+    public List<Car> getNewCarList() throws Exception {
+        return carDao.getNewEntityList();
+    }
+
+    @Override
     public List<Car> getEntity(String name) throws Exception {
         return carDao.getEntity(name);
     }

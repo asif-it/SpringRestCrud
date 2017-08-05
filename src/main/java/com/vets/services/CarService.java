@@ -12,6 +12,8 @@ public interface CarService {
     boolean addCar(Car car) throws Exception;
     Car getCarById(long carId) throws Exception;
     List<Car> getCarList() throws Exception;
+    List<Car> getUsedCarList() throws Exception;
+    List<Car> getNewCarList() throws Exception;
     boolean deleteCar(long carId) throws Exception;
     List<Car> getEntity(String name) throws Exception;
 }
