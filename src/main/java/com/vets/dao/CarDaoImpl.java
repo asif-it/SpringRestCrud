@@ -78,4 +78,38 @@ public class CarDaoImpl implements CarDao {
         tx.commit();
         return false;
     }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Car> getUsedEntityList() throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        List<Car> carList = session.createQuery("FROM Car C where C.odo_reading > 0").list();
+        tx.commit();
+        session.close();
+        return carList;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Car> getNewEntityList() throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        List<Car> carList = session.createQuery("FROM Car C where C.odo_reading <= 0").list();
+        tx.commit();
+        session.close();
+        return carList;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Car> getMyCars(String username) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        List<Integer> user = session.createQuery("SELECT id FROM User U where U.username = "+username).list();
+        List<Car> carList = session.createQuery("FROM Car C where C.owned_by = "+user.get(0)).list();
+        tx.commit();
+        session.close();
+        return carList;
+    }
 }

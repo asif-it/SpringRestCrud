@@ -79,4 +79,33 @@ public class CarController {
         }
 
     }
+
+    @RequestMapping(value = "/list-used", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<Car> getUsedCars() {
+
+        List<Car> carList = null;
+        try {
+            carList = carService.getUsedCarList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return carList;
+    }
+
+    @RequestMapping(value = "/list-new", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<Car> getNewCars() {
+
+        List<Car> carList = null;
+        try {
+            carList = carService.getNewCarList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return carList;
+    }
 }

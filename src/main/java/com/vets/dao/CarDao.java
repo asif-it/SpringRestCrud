@@ -11,5 +11,7 @@ public interface CarDao {
     public List<Car> getEntityList() throws Exception;
     public boolean deleteEntity(long id) throws Exception;
     public List<Car> getEntity(String name) throws Exception;
-
+    public List<Car> getUsedEntityList() throws Exception;
+    public List<Car> getNewEntityList() throws Exception;
+    public List<Car> getMyCars(String username) throws Exception;
 }
