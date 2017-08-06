@@ -100,12 +100,15 @@ public class RestController implements Serializable {
         }
     }
 
-    @RequestMapping(value = "auth", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "auth", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE
+            )
     public @ResponseBody
-    Boolean login(@HeaderParam("Authorization") String authString) {
+    String login(/*@HeaderParam("Authorization") String authString*/ @RequestBody String authString) {
+        System.out.println("in uth ");
+        System.out.println(authString);
         String[] authParts = authString.split(" ");
-        String authInfo = authParts[1];
-
+        String authInfo = authParts[0];
+        System.out.println(authInfo);
         // Decode the data back to original string
         byte[] bytes = null;
         try {
@@ -113,16 +116,20 @@ public class RestController implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        String decodedAuth = new String(bytes);
+        String decodedAuth = "";
+        decodedAuth = new String(bytes);
         System.out.println(decodedAuth); //Username:Password
 
         String[] auth = decodedAuth.split(":");
+        System.out.println(auth[0]+":"+auth[1]);
+        try{
+            System.out.println(Boolean.toString( dataServices.isAuthenticated(auth[0], auth[1]) ) );
+        }catch (Exception e){}
         try {
-            return dataServices.isAuthenticated(auth[0], auth[1]);
+            return Boolean.toString(dataServices.isAuthenticated(auth[0], auth[1]));
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return "False";
         }
     }
 
