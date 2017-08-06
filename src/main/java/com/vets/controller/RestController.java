@@ -34,17 +34,17 @@ public class RestController implements Serializable {
     static final Logger logger = Logger.getLogger(RestController.class);
 
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE
-            /*,produces = MediaType.TEXT_PLAIN_VALUE*/)
+    )
     public @ResponseBody
     Status addUser(@RequestBody User user) {
-       try{
-           dataServices.addEntity(user);
-           return new Status(1, "User added Successfully !");
+        try {
+            dataServices.addEntity(user);
+            return new Status(1, "User added Successfully !");
 
-       }catch (Exception e){
-           e.printStackTrace();
-           return new Status(0,"Error");
-       }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Status(0, "Error");
+        }
 
     }
 
@@ -89,7 +89,7 @@ public class RestController implements Serializable {
         return userList;
     }
 
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET,consumes = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET, consumes = MediaType.TEXT_PLAIN_VALUE)
     public @ResponseBody
     Status deleteUser(@PathVariable("id") long id) {
         try {
