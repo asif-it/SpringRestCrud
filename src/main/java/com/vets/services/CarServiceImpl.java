@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class CarServiceImpl implements CarService{
     @Autowired
-    CarDao carDao;
+    private CarDao carDao;
 
     @Override
     public boolean addCar(Car car) throws Exception {
@@ -45,7 +45,17 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
+    public List<Car> getUsedCarList(int top) throws Exception {
+        return carDao.getUsedEntityList(top);
+    }
+
+    @Override
     public List<Car> getNewCarList() throws Exception {
         return carDao.getNewEntityList();
+    }
+
+    @Override
+    public List<Car> getNewCarList(int top) throws Exception {
+        return carDao.getNewEntityList(top);
     }
 }

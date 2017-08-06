@@ -14,6 +14,8 @@ public interface CarService {
     List<Car> getCarList() throws Exception;
     List<Car> getCarList(String keyword) throws Exception;
     List<Car> getUsedCarList() throws Exception;
+    List<Car> getUsedCarList(int top) throws Exception;
     List<Car> getNewCarList() throws Exception;
+    List<Car> getNewCarList(int top) throws Exception;
     boolean deleteCar(long carId) throws Exception;
 }

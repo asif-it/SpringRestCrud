@@ -78,6 +78,36 @@ public class CarController {
         return carList;
     }
 
+    @RequestMapping(value = "/list_index_used", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<Car> getRecentUsedCars(@RequestParam Integer top) {
+
+        List<Car> carList = null;
+        try {
+            carList = carService.getUsedCarList(top);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return carList;
+    }
+
+    @RequestMapping(value = "/list_index_new", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<Car> getRecentNewCars(@RequestParam Integer top) {
+
+        List<Car> carList = null;
+        try {
+            carList = carService.getNewCarList(top);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return carList;
+    }
+
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Status deleteCar(@PathVariable("id") long id) {
