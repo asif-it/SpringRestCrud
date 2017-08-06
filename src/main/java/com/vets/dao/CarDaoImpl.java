@@ -61,7 +61,7 @@ public class CarDaoImpl implements CarDao {
     public List<Car> getEntityList(String name) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        List<Car> carList = session.createQuery("FROM CARS C where c.model_name like '%" + name + "'").list();
+        List<Car> carList = session.createQuery("FROM Car C where c.model_name like '%" + name + "'").list();
         tx.commit();
         session.close();
 
@@ -97,6 +97,26 @@ public class CarDaoImpl implements CarDao {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
         List<Car> carList = session.createQuery("FROM Car C where C.odo_reading <= 0").list();
+        tx.commit();
+        session.close();
+        return carList;
+    }
+
+    @Override
+    public List<Car> getUsedEntityList(int top) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        List<Car> carList = session.createQuery("FROM Car C where C.odo_reading > 0 ORDER BY C.id desc").setMaxResults(top).list();
+        tx.commit();
+        session.close();
+        return carList;
+    }
+
+    @Override
+    public List<Car> getNewEntityList(int top) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        List<Car> carList = session.createQuery("FROM Car C where C.odo_reading <= 0 ORDER BY C.id desc").setMaxResults(top).list();
         tx.commit();
         session.close();
         return carList;

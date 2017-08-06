@@ -33,16 +33,19 @@ public class RestController implements Serializable {
     CarDao carDao;
     static final Logger logger = Logger.getLogger(RestController.class);
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE
+    )
     public @ResponseBody
     Status addUser(@RequestBody User user) {
         try {
             dataServices.addEntity(user);
             return new Status(1, "User added Successfully !");
+
         } catch (Exception e) {
-            // e.printStackTrace();
-            return new Status(0, e.toString());
+            e.printStackTrace();
+            return new Status(0, "Error");
         }
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -86,7 +89,7 @@ public class RestController implements Serializable {
         return userList;
     }
 
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET,consumes = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET, consumes = MediaType.TEXT_PLAIN_VALUE)
     public @ResponseBody
     Status deleteUser(@PathVariable("id") long id) {
         try {
@@ -97,12 +100,15 @@ public class RestController implements Serializable {
         }
     }
 
-    @RequestMapping(value = "auth", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "auth", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE
+            )
     public @ResponseBody
-    Boolean login(@HeaderParam("Authorization") String authString) {
+    String login(/*@HeaderParam("Authorization") String authString*/ @RequestBody String authString) {
+        System.out.println("in uth ");
+        System.out.println(authString);
         String[] authParts = authString.split(" ");
-        String authInfo = authParts[1];
-
+        String authInfo = authParts[0];
+        System.out.println(authInfo);
         // Decode the data back to original string
         byte[] bytes = null;
         try {
@@ -110,16 +116,20 @@ public class RestController implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        String decodedAuth = new String(bytes);
+        String decodedAuth = "";
+        decodedAuth = new String(bytes);
         System.out.println(decodedAuth); //Username:Password
 
         String[] auth = decodedAuth.split(":");
+        System.out.println(auth[0]+":"+auth[1]);
+        try{
+            System.out.println(Boolean.toString( dataServices.isAuthenticated(auth[0], auth[1]) ) );
+        }catch (Exception e){}
         try {
-            return dataServices.isAuthenticated(auth[0], auth[1]);
+            return Boolean.toString(dataServices.isAuthenticated(auth[0], auth[1]));
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return "False";
         }
     }
 

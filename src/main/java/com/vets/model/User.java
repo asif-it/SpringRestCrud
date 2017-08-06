@@ -42,12 +42,13 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String first_name, String last_name, String username, String email, String phone) {
+    public User(String first_name, String last_name, String username, String email, String phone,String password) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.username = username;
         this.email = email;
         this.phone = phone;
+        this.password=password;
     }
 
     public long getId() {
@@ -100,5 +101,13 @@ public class User implements Serializable {
 
     public void commit() {
 
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
