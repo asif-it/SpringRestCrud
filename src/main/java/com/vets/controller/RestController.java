@@ -33,16 +33,19 @@ public class RestController implements Serializable {
     CarDao carDao;
     static final Logger logger = Logger.getLogger(RestController.class);
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE
+            /*,produces = MediaType.TEXT_PLAIN_VALUE*/)
     public @ResponseBody
     Status addUser(@RequestBody User user) {
-        try {
-            dataServices.addEntity(user);
-            return new Status(1, "User added Successfully !");
-        } catch (Exception e) {
-            // e.printStackTrace();
-            return new Status(0, e.toString());
-        }
+       try{
+           dataServices.addEntity(user);
+           return new Status(1, "User added Successfully !");
+
+       }catch (Exception e){
+           e.printStackTrace();
+           return new Status(0,"Error");
+       }
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
