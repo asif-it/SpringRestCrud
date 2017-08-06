@@ -45,7 +45,7 @@ public class Car {
     private String insurance;
 
     @Column(name = "insurance_expiry")
-    private Date insurance_expiry;
+    private String insurance_expiry;
 
     @Column(name = "manufacturing_year")
     private int manufacturing_year;
@@ -56,8 +56,8 @@ public class Car {
     @Column(name = "rto_location")
     private String rto_location;
 
-    @Column(name = "date_of_reg_on_website")
-    private Date date_of_reg_on_website;
+//    @Column(name = "date_of_reg_on_website")
+//    private String date_of_reg_on_website;
 
     @Column(name="mileage")
     private double mileage;
@@ -71,7 +71,7 @@ public class Car {
     public Car(){
     }
 
-    public Car(String model_name,String brand_name,String engine,String city,String fuel,String odo_reading,String color,int no_of_owners,boolean power_steering,String insurance,Date insurance_expiry,int manufacturing_year,String registration_type,String rto_location,Date date_of_reg_on_website,Double mileage,int seating_capacity,int owned_by){
+    public Car(String model_name,String brand_name,String engine,String city,String fuel,String odo_reading,String color,int no_of_owners,boolean power_steering,String insurance,String insurance_expiry,int manufacturing_year,String registration_type,String rto_location,Double mileage,int seating_capacity,int owned_by){
       this.model_name=model_name;
       this.brand_name=brand_name;
       this.engine=engine;
@@ -86,7 +86,7 @@ public class Car {
       this.manufacturing_year=manufacturing_year;
       this.registration_type=registration_type;
       this.rto_location=rto_location;
-      this.date_of_reg_on_website=date_of_reg_on_website;
+//      this.date_of_reg_on_website=date_of_reg_on_website;
       this.mileage=mileage;
       this.seating_capacity=seating_capacity;
       this.owned_by=owned_by;
@@ -100,13 +100,13 @@ public class Car {
         this.engine = engine;
     }
 
-    public Date getDate_of_reg_on_website() {
-        return date_of_reg_on_website;
-    }
+//    public Date getDate_of_reg_on_website() {
+//        return date_of_reg_on_website;
+//    }
 
-    public void setDate_of_reg_on_website(Date date_of_reg_on_website) {
-        this.date_of_reg_on_website = date_of_reg_on_website;
-    }
+//    public void setDate_of_reg_on_website(Date date_of_reg_on_website) {
+//        this.date_of_reg_on_website = date_of_reg_on_website;
+//    }
 
     public long getOwned_by() {
         return owned_by;
@@ -132,13 +132,13 @@ public class Car {
         this.mileage = mileage;
     }
 
-    public Date getDate_of_regOnWebsite() {
-        return date_of_reg_on_website;
-    }
+//    public Date getDate_of_regOnWebsite() {
+//        return date_of_reg_on_website;
+//    }
 
-    public void setDate_of_regOnWebsite(Date date_of_regOnWebsite) {
-        this.date_of_reg_on_website = date_of_regOnWebsite;
-    }
+//    public void setDate_of_regOnWebsite(Date date_of_regOnWebsite) {
+//        this.date_of_reg_on_website = date_of_regOnWebsite;
+//    }
 
     public String getRto_location() {
         return rto_location;
@@ -164,11 +164,11 @@ public class Car {
         this.manufacturing_year = manufacturing_year;
     }
 
-    public Date getInsurance_expiry() {
+    public String getInsurance_expiry() {
         return insurance_expiry;
     }
 
-    public void setInsurance_expiry(Date insurance_expiry) {
+    public void setInsurance_expiry(String insurance_expiry) {
         this.insurance_expiry = insurance_expiry;
     }
 
