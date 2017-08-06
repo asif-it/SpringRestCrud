@@ -1,6 +1,7 @@
 package com.vets.dao;
 
 import com.vets.model.Car;
+import com.vets.model.User;
 import oracle.jrockit.jfr.parser.ChunkParser;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -42,6 +43,21 @@ public class CarDaoImpl implements CarDao {
         Car car = (Car) query.list().get(0);
         tx.commit();
         return car;
+    }
+
+    @Override
+    public long getUserIdByCarId(long car_id) throws Exception {
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+//        Car car = (Car) session.load(Car.class, id);
+        Query query = session.createQuery("select C.owned_by FROM Car C where C.id=:car_id");
+        query.setParameter("car_id", car_id);
+        tx = session.getTransaction();
+//        session.beginTransaction();
+        Long user_id = (Long) query.list().get(0);
+        System.out.println(user_id);
+        tx.commit();
+        return user_id;
     }
 
     @SuppressWarnings("unchecked")
