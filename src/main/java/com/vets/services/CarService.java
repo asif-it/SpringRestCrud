@@ -2,6 +2,7 @@ package com.vets.services;
 
 import com.vets.model.Car;
 import com.vets.model.Transaction;
+import com.vets.model.User;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
 public interface CarService {
     boolean addCar(Car car) throws Exception;
     Car getCarById(long carId) throws Exception;
+    long getUserIdByCarId(long carId) throws Exception;
     List<Car> getCarList() throws Exception;
     List<Car> getCarList(String keyword) throws Exception;
     List<Car> getUsedCarList() throws Exception;

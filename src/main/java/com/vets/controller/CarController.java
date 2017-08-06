@@ -50,6 +50,20 @@ public class CarController {
         return car;
     }
 
+    @RequestMapping(value = "/getUserId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    Long getUser(@RequestParam("car_id") long id) {
+        System.out.println("in getUser ");
+        Long user_id = null;
+        try {
+            user_id = carService.getUserIdByCarId(id);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user_id;
+    }
+
     @RequestMapping(value = "search/{keyword}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<Car> getCars(@PathVariable("keyword") String keyword) {
@@ -78,7 +92,7 @@ public class CarController {
         return carList;
     }
 
-    @RequestMapping(value = "/list_index_used", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/list_index_used", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<Car> getRecentUsedCars(@RequestParam Integer top) {
 
@@ -93,7 +107,7 @@ public class CarController {
         return carList;
     }
 
-    @RequestMapping(value = "/list_index_new", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/list_index_new", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<Car> getRecentNewCars(@RequestParam Integer top) {
 

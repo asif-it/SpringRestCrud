@@ -78,11 +78,10 @@ public class DataDaoImpl implements DataDao {
     @Override
     public boolean isAuthenticated(String username, String password)
             throws Exception {
-        System.out.println("in isAuthenticated");
         session = sessionFactory.openSession();
 //		tx = session.getTransaction();
         session.beginTransaction();
-        Query query = session.createQuery("FROM User U where U.username=:username and U.password=:password");
+        Query query = session.createQuery("FROM User U where U.first_name=:username and U.password=:password");
         query.setParameter("username", username);
         query.setParameter("password", password);
 //		tx.commit();
