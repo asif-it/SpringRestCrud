@@ -24,6 +24,8 @@
         <property name="annotatedClasses">
             <list>
                 <value>com.vets.model.User</value>
+                <value>com.vets.model.Car</value>
+                <value>com.vets.model.Transaction</value>
             </list>
         </property>
         <property name="hibernateProperties">

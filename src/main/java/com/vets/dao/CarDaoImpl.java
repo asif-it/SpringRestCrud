@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -17,7 +18,8 @@ public class CarDaoImpl implements CarDao {
     @Autowired
     SessionFactory sessionFactory;
     Session session = null;
-    Transaction tx =null;
+    Transaction tx = null;
+
     @Override
     public boolean addEntity(Car car) throws Exception {
         session = sessionFactory.openSession();
@@ -31,9 +33,13 @@ public class CarDaoImpl implements CarDao {
     @Override
     public Car getEntityById(long id) throws Exception {
         session = sessionFactory.openSession();
-        Car car = (Car) session.load(Car.class, id);
-        tx = session.getTransaction();
         session.beginTransaction();
+//        Car car = (Car) session.load(Car.class, id);
+        Query query = session.createQuery("FROM Car C where C.id=:id");
+        query.setParameter("id", id);
+        tx = session.getTransaction();
+//        session.beginTransaction();
+        Car car = (Car) query.list().get(0);
         tx.commit();
         return car;
     }
@@ -52,10 +58,10 @@ public class CarDaoImpl implements CarDao {
 
     @SuppressWarnings("unchecked")
 
-    public List<Car> getEntity(String name) throws Exception {
-        session=sessionFactory.openSession();
-        tx=session.beginTransaction();
-        List<Car> carList=session.createQuery("FROM CARS C where c.model_name like '%"+name+"'").list();
+    public List<Car> getEntityList(String name) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        List<Car> carList = session.createQuery("FROM CARS C where c.model_name like '%" + name + "'").list();
         tx.commit();
         session.close();
 
@@ -101,8 +107,14 @@ public class CarDaoImpl implements CarDao {
     public List<Car> getMyCars(String username) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        List<Integer> user = session.createQuery("SELECT id FROM User U where U.username = "+username).list();
-        List<Car> carList = session.createQuery("FROM Car C where C.owned_by = "+user.get(0)).list();
+
+        Query query = session.createQuery("SELECT U.id FROM User U where U.username=:username");
+        query.setParameter("username", username);
+        List<Long> userId = query.list();
+        query = session.createQuery("FROM Car C where C.owned_by=:userId");
+        query.setParameter("userId", Long.parseLong(userId.get(0).toString()));
+        List<Car> carList = query.list();
+
         tx.commit();
         session.close();
         return carList;

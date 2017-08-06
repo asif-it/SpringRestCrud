@@ -7,12 +7,12 @@ import java.util.Date;
  * Created by vijayn on 8/2/2017.
  */
 @Entity
-@Table(name = "Cars")
+@Table(name = "car")
 public class Car {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @Column(name="model_name")
     private String model_name;
@@ -27,7 +27,7 @@ public class Car {
     private String city;
 
     @Column(name = "fuel")
-    private Fuel fuel;
+    private String fuel;
 
     @Column(name = "odo_reading")
     private String odo_reading;
@@ -50,9 +50,6 @@ public class Car {
     @Column(name = "manufacturing_year")
     private int manufacturing_year;
 
-    @Column(name = "registration_date")
-    private Date registration_date;
-
     @Column(name = "registration_type")
     private String registration_type;
 
@@ -69,12 +66,12 @@ public class Car {
     private int seating_capacity;
 
     @Column(name = "owned_by")
-    private int owned_by;
+    private long owned_by;
 
     public Car(){
     }
 
-    public Car(String model_name,String brand_name,String engine,String city,Fuel fuel,String odo_reading,String color,int no_of_owners,boolean power_steering,String insurance,Date insurance_expiry,int manufacturing_year,Date registration_date,String registration_type,String rto_location,Date date_of_reg_on_website,Double mileage,int seating_capacity,int owned_by){
+    public Car(String model_name,String brand_name,String engine,String city,String fuel,String odo_reading,String color,int no_of_owners,boolean power_steering,String insurance,Date insurance_expiry,int manufacturing_year,String registration_type,String rto_location,Date date_of_reg_on_website,Double mileage,int seating_capacity,int owned_by){
       this.model_name=model_name;
       this.brand_name=brand_name;
       this.engine=engine;
@@ -87,7 +84,6 @@ public class Car {
       this.insurance=insurance;
       this.insurance_expiry=insurance_expiry;
       this.manufacturing_year=manufacturing_year;
-      this.registration_date=registration_date;
       this.registration_type=registration_type;
       this.rto_location=rto_location;
       this.date_of_reg_on_website=date_of_reg_on_website;
@@ -95,11 +91,28 @@ public class Car {
       this.seating_capacity=seating_capacity;
       this.owned_by=owned_by;
     }
-    public int getOwned_by() {
+
+    public String getEngine() {
+        return engine;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public Date getDate_of_reg_on_website() {
+        return date_of_reg_on_website;
+    }
+
+    public void setDate_of_reg_on_website(Date date_of_reg_on_website) {
+        this.date_of_reg_on_website = date_of_reg_on_website;
+    }
+
+    public long getOwned_by() {
         return owned_by;
     }
 
-    public void setOwned_by(int owned_by) {
+    public void setOwned_by(long owned_by) {
         this.owned_by = owned_by;
     }
 
@@ -141,14 +154,6 @@ public class Car {
 
     public void setRegistration_type(String registration_type) {
         this.registration_type = registration_type;
-    }
-
-    public Date getRegistration_data() {
-        return registration_date;
-    }
-
-    public void setRegistration_data(Date registration_data) {
-        this.registration_date = registration_data;
     }
 
     public int getManufacturing_year() {
@@ -207,11 +212,11 @@ public class Car {
         this.odo_reading = odo_reading;
     }
 
-    public Fuel getFuel() {
+    public String getFuel() {
         return fuel;
     }
 
-    public void setFuel(Fuel fuel) {
+    public void setFuel(String fuel) {
         this.fuel = fuel;
     }
 
@@ -223,16 +228,12 @@ public class Car {
         this.city = city;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
-    }
-
-    public void commit(){
-
     }
 
     public String getBrand_name() {
