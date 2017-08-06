@@ -25,6 +25,11 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
+    public List<Car> getCarList(String keyword) throws Exception {
+        return carDao.getEntityList(keyword);
+    }
+
+    @Override
     public List<Car> getCarList() throws Exception {
         return carDao.getEntityList();
     }
@@ -42,10 +47,5 @@ public class CarServiceImpl implements CarService{
     @Override
     public List<Car> getNewCarList() throws Exception {
         return carDao.getNewEntityList();
-    }
-
-    @Override
-    public List<Car> getEntity(String name) throws Exception {
-        return carDao.getEntity(name);
     }
 }

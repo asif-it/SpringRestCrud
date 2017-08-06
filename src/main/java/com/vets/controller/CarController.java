@@ -37,8 +37,6 @@ public class CarController {
 
     }
 
-
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Car getCar(@PathVariable("id") long id) {
@@ -50,6 +48,19 @@ public class CarController {
             e.printStackTrace();
         }
         return car;
+    }
+
+    @RequestMapping(value = "search/{keyword}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<Car> getCars(@PathVariable("keyword") String keyword) {
+        List<Car> cars = null;
+        try {
+            cars = carService.getCarList(keyword);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cars;
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

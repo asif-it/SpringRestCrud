@@ -1,6 +1,7 @@
 package com.vets.controller;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
@@ -25,7 +26,7 @@ import javax.ws.rs.HeaderParam;
 
 @Controller
 @RequestMapping("/user")
-public class RestController {
+public class RestController implements Serializable {
     @Autowired
     DataServices dataServices;
     @Autowired
@@ -54,6 +55,7 @@ public class RestController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(user.getEmail());
         return user;
     }
 

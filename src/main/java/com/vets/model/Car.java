@@ -66,7 +66,7 @@ public class Car {
     private int seating_capacity;
 
     @Column(name = "owned_by")
-    private int owned_by;
+    private long owned_by;
 
     public Car(){
     }
@@ -91,11 +91,28 @@ public class Car {
       this.seating_capacity=seating_capacity;
       this.owned_by=owned_by;
     }
-    public int getOwned_by() {
+
+    public String getEngine() {
+        return engine;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public Date getDate_of_reg_on_website() {
+        return date_of_reg_on_website;
+    }
+
+    public void setDate_of_reg_on_website(Date date_of_reg_on_website) {
+        this.date_of_reg_on_website = date_of_reg_on_website;
+    }
+
+    public long getOwned_by() {
         return owned_by;
     }
 
-    public void setOwned_by(int owned_by) {
+    public void setOwned_by(long owned_by) {
         this.owned_by = owned_by;
     }
 
