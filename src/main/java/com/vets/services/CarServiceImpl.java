@@ -3,6 +3,7 @@ package com.vets.services;
 import com.vets.dao.CarDao;
 import com.vets.model.Car;
 import com.vets.model.Transaction;
+import com.vets.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -22,6 +23,11 @@ public class CarServiceImpl implements CarService{
     @Override
     public Car getCarById(long carId) throws Exception {
         return carDao.getEntityById(carId);
+    }
+
+    @Override
+    public long getUserIdByCarId(long carId) throws Exception {
+        return carDao.getUserIdByCarId(carId);
     }
 
     @Override
