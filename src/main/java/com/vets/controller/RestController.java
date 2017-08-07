@@ -8,6 +8,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.vets.dao.CarDao;
 import com.vets.model.Car;
 import com.vets.model.User;
+import com.vets.services.DataServicesImpl;
 import org.apache.log4j.Logger;
 import com.vets.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ import javax.ws.rs.HeaderParam;
 @RequestMapping("/user")
 public class RestController implements Serializable {
     @Autowired
-    DataServices dataServices;
+    DataServices dataServices;// = new DataServicesImpl();
     @Autowired
     CarDao carDao;
     static final Logger logger = Logger.getLogger(RestController.class);
@@ -37,6 +38,7 @@ public class RestController implements Serializable {
     )
     public @ResponseBody
     Status addUser(@RequestBody User user) {
+        System.out.println();
         try {
             dataServices.addEntity(user);
             return new Status(1, "User added Successfully !");
@@ -51,6 +53,7 @@ public class RestController implements Serializable {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     User getUser(@PathVariable("id") long id) {
+        System.out.println();
         User user = null;
         try {
             user = dataServices.getEntityById(id);
@@ -65,6 +68,7 @@ public class RestController implements Serializable {
     @RequestMapping(value = "username/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     User getUser(@PathVariable("username") String username) {
+        System.out.println();
         User user = null;
         try {
             user = dataServices.getEntityByName(username);
@@ -78,6 +82,7 @@ public class RestController implements Serializable {
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<User> getUsers() {
+        System.out.println();
         List<User> userList = null;
         try {
             userList = dataServices.getEntityList();
@@ -92,6 +97,7 @@ public class RestController implements Serializable {
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET, consumes = MediaType.TEXT_PLAIN_VALUE)
     public @ResponseBody
     Status deleteUser(@PathVariable("id") long id) {
+        System.out.println();
         try {
             dataServices.deleteEntity(id);
             return new Status(1, "User deleted Successfully !");
@@ -136,6 +142,7 @@ public class RestController implements Serializable {
     @RequestMapping(value = "/user-cars/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<Car> getMyCars(@PathVariable("username") String username) {
+        System.out.println();
         List<Car> carList = null;
         try {
             carList = carDao.getMyCars(username);

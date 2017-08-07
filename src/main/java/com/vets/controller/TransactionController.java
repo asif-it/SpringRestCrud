@@ -27,21 +27,23 @@ public class TransactionController {
 
     static final Logger logger = Logger.getLogger(TransactionController.class);
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    //@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/create", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Status addTransaction(@RequestBody Transaction transaction) {
+    //Status addTransaction() {
         System.out.println("This is in addTransaction...");
-        /*try {
-            System.out.println("in addTransaction");
+        try {
             transactionService.addTransaction(transaction);
+            System.out.println("in addTransaction");
             return new Status(1, "Transaction added Successfully !");
         } catch (Exception e) {
             // e.printStackTrace();
             System.out.println("addTransaction WS...catch..");
             return new Status(0, e.toString());
-        }*/
-
-        return new Status(0,"Do u need this?");
+        }
+        //return new Status(0,"Do u need this?");
     }
 
     @RequestMapping(value = "/{transactionid}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
