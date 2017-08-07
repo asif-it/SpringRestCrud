@@ -39,6 +39,19 @@ public class DataDaoImpl implements DataDao {
     }
 
     @Override
+    public Long getEntityId(String username) throws Exception {
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("select U.id from User U where U.username=:username");
+        query.setParameter("username", username);
+        Long id = (Long) query.list().get(0);
+        tx = session.getTransaction();
+
+        tx.commit();
+        return id;
+    }
+
+    @Override
     public User getEntityByName(String username) throws Exception {
         System.out.println("sf jkash fjkasd "+username);
         session = sessionFactory.openSession();

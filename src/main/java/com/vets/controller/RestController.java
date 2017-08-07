@@ -65,6 +65,20 @@ public class RestController implements Serializable {
         return user;
     }
 
+    @RequestMapping(value = "/get-user-id/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    Long getUserId(@PathVariable("username") String username) {
+        Long id = null;
+        try {
+            id = dataServices.getUserId(username);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        System.out.println(user.getEmail());
+        return id;
+    }
+
     @RequestMapping(value = "username/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     User getUser(@PathVariable("username") String username) {
@@ -107,7 +121,7 @@ public class RestController implements Serializable {
     }
 
     @RequestMapping(value = "auth", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE
-            )
+    )
     public @ResponseBody
     String login(/*@HeaderParam("Authorization") String authString*/ @RequestBody String authString) {
         System.out.println("in uth ");
@@ -127,10 +141,11 @@ public class RestController implements Serializable {
         System.out.println(decodedAuth); //Username:Password
 
         String[] auth = decodedAuth.split(":");
-        System.out.println(auth[0]+":"+auth[1]);
-        try{
-            System.out.println(Boolean.toString( dataServices.isAuthenticated(auth[0], auth[1]) ) );
-        }catch (Exception e){}
+        System.out.println(auth[0] + ":" + auth[1]);
+        try {
+            System.out.println(Boolean.toString(dataServices.isAuthenticated(auth[0], auth[1])));
+        } catch (Exception e) {
+        }
         try {
             return Boolean.toString(dataServices.isAuthenticated(auth[0], auth[1]));
         } catch (Exception e) {
