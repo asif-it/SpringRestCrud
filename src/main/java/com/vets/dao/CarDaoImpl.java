@@ -22,12 +22,13 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public boolean addEntity(Car car) throws Exception {
+        System.out.println("Model_name ::::" +car.getModel_name());
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
         session.save(car);
         tx.commit();
         session.close();
-        return true;
+        return false;
     }
 
     @Override

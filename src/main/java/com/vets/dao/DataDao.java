@@ -10,6 +10,7 @@ public interface DataDao {
 	User getEntityById(long id) throws Exception;
 	User getEntityByName(String username) throws Exception;
 	List<User> getEntityList() throws Exception;
+	Long getEntityId(String username) throws Exception;
 	boolean deleteEntity(long id) throws Exception;
 	boolean isAuthenticated(String username, String password) throws Exception;
 }
