@@ -77,7 +77,10 @@ public class CarDaoImpl implements CarDao {
     public List<Car> getEntityList(String name) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        List<Car> carList = session.createQuery("FROM Car C where c.model_name like '%" + name + "'").list();
+        Query query = session.createQuery("FROM Car C where C.model_name like :name or C.brand_name like :name");
+        query.setParameter("name", "%" + name + "%");
+        List<Car> carList = query.list();
+
         tx.commit();
         session.close();
 
