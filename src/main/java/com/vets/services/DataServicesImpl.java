@@ -39,6 +39,11 @@ public class DataServicesImpl implements DataServices {
 	}
 
 	@Override
+	public Long getUserId(String username) throws Exception {
+		return dataDao.getEntityId(username);
+	}
+
+	@Override
 	public boolean isAuthenticated(String username, String password) throws Exception {
 		return dataDao.isAuthenticated(username, password);
 	}

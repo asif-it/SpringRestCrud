@@ -8,6 +8,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.vets.dao.CarDao;
 import com.vets.model.Car;
 import com.vets.model.User;
+import com.vets.services.DataServicesImpl;
 import org.apache.log4j.Logger;
 import com.vets.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ import javax.ws.rs.HeaderParam;
 @RequestMapping("/user")
 public class RestController implements Serializable {
     @Autowired
-    DataServices dataServices;
+    DataServices dataServices;// = new DataServicesImpl();
     @Autowired
     CarDao carDao;
     static final Logger logger = Logger.getLogger(RestController.class);
@@ -37,6 +38,7 @@ public class RestController implements Serializable {
     )
     public @ResponseBody
     Status addUser(@RequestBody User user) {
+        System.out.println();
         try {
             dataServices.addEntity(user);
             return new Status(1, "User added Successfully !");
@@ -51,6 +53,7 @@ public class RestController implements Serializable {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     User getUser(@PathVariable("id") long id) {
+        System.out.println();
         User user = null;
         try {
             user = dataServices.getEntityById(id);
@@ -62,9 +65,24 @@ public class RestController implements Serializable {
         return user;
     }
 
+    @RequestMapping(value = "/get-user-id/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    Long getUserId(@PathVariable("username") String username) {
+        Long id = null;
+        try {
+            id = dataServices.getUserId(username);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        System.out.println(user.getEmail());
+        return id;
+    }
+
     @RequestMapping(value = "username/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     User getUser(@PathVariable("username") String username) {
+        System.out.println();
         User user = null;
         try {
             user = dataServices.getEntityByName(username);
@@ -78,6 +96,7 @@ public class RestController implements Serializable {
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<User> getUsers() {
+        System.out.println();
         List<User> userList = null;
         try {
             userList = dataServices.getEntityList();
@@ -92,6 +111,7 @@ public class RestController implements Serializable {
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET, consumes = MediaType.TEXT_PLAIN_VALUE)
     public @ResponseBody
     Status deleteUser(@PathVariable("id") long id) {
+        System.out.println();
         try {
             dataServices.deleteEntity(id);
             return new Status(1, "User deleted Successfully !");
@@ -101,7 +121,7 @@ public class RestController implements Serializable {
     }
 
     @RequestMapping(value = "auth", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE
-            )
+    )
     public @ResponseBody
     String login(/*@HeaderParam("Authorization") String authString*/ @RequestBody String authString) {
         System.out.println("in uth ");
@@ -121,10 +141,11 @@ public class RestController implements Serializable {
         System.out.println(decodedAuth); //Username:Password
 
         String[] auth = decodedAuth.split(":");
-        System.out.println(auth[0]+":"+auth[1]);
-        try{
-            System.out.println(Boolean.toString( dataServices.isAuthenticated(auth[0], auth[1]) ) );
-        }catch (Exception e){}
+        System.out.println(auth[0] + ":" + auth[1]);
+        try {
+            System.out.println(Boolean.toString(dataServices.isAuthenticated(auth[0], auth[1])));
+        } catch (Exception e) {
+        }
         try {
             return Boolean.toString(dataServices.isAuthenticated(auth[0], auth[1]));
         } catch (Exception e) {
@@ -136,6 +157,7 @@ public class RestController implements Serializable {
     @RequestMapping(value = "/user-cars/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<Car> getMyCars(@PathVariable("username") String username) {
+        System.out.println();
         List<Car> carList = null;
         try {
             carList = carDao.getMyCars(username);
