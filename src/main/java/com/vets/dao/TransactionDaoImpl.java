@@ -46,7 +46,7 @@ public class TransactionDaoImpl implements TransactionDao {
     public List<com.vets.model.Transaction> getTransactionList() throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        List<com.vets.model.Transaction> transactionList = session.createCriteria(User.class)
+        List<com.vets.model.Transaction> transactionList = session.createCriteria(Transaction.class)
                 .list();
         tx.commit();
         session.close();
