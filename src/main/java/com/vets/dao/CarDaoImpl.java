@@ -1,15 +1,12 @@
 package com.vets.dao;
 
 import com.vets.model.Car;
-import com.vets.model.User;
-import oracle.jrockit.jfr.parser.ChunkParser;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -23,7 +20,7 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public boolean addEntity(Car car) throws Exception {
-        System.out.println("Model_name ::::" +car.getModel_name());
+        System.out.println("Model_name ::::" + car.getModel_name());
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
         session.save(car);
@@ -100,6 +97,19 @@ public class CarDaoImpl implements CarDao {
         return false;
     }
 
+    @Override
+    public boolean validateCar(long id, double price)
+            throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        Query query = session.createQuery("UPDATE Car C set C.price=:price,C.is_validated=1 where id=:id");
+        query.setParameter("price", price);
+        query.setParameter("id", id);
+        tx.commit();
+        session.close();
+        return false;
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public List<Car> getUsedEntityList() throws Exception {
@@ -109,6 +119,18 @@ public class CarDaoImpl implements CarDao {
         tx.commit();
         session.close();
         return carList;
+    }
+
+    @Override
+    public long getVehicleEntityId() throws Exception {
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("select max(C.id) from Car C ");
+        long id = (Long) query.list().get(0);
+        tx = session.getTransaction();
+
+        tx.commit();
+        return id;
     }
 
     @SuppressWarnings("unchecked")

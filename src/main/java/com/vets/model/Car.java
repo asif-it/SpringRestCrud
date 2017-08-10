@@ -71,11 +71,14 @@ public class Car {
     @Column(name = "price")
     private double price;
 
+    @Column(name = "is_validated")
+    private int is_validated;
+
     public Car(){
 
     }
 
-    public Car(String model_name, String brand_name, String engine, String city, String fuel, int odo_reading, String color, int no_of_owners, boolean power_steering, String insurance, String insurance_expiry, int manufacturing_year, String registration_date, String registration_type, String rto_location, double mileage, int seating_capacity,long owned_by, double price) {
+    public Car(String model_name, String brand_name, String engine, String city, String fuel, int odo_reading, String color, int no_of_owners, boolean power_steering, String insurance, String insurance_expiry, int manufacturing_year, String registration_date, String registration_type, String rto_location, double mileage, int seating_capacity, long owned_by, double price, int is_validated) {
         this.model_name = model_name;
         this.brand_name = brand_name;
         this.engine = engine;
@@ -93,8 +96,9 @@ public class Car {
         this.rto_location = rto_location;
         this.mileage = mileage;
         this.seating_capacity = seating_capacity;
-        this.owned_by=owned_by;
+        this.owned_by = owned_by;
         this.price = price;
+        this.is_validated = is_validated;
     }
 
     public long getId() {
@@ -255,5 +259,13 @@ public class Car {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getIs_validated() {
+        return is_validated;
+    }
+
+    public void setIs_validated(int is_validated) {
+        this.is_validated = is_validated;
     }
 }

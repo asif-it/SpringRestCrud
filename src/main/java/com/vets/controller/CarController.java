@@ -64,6 +64,20 @@ public class CarController {
         return user_id;
     }
 
+    @RequestMapping(value = "/getVehicleId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    Long getVehicleId() {
+        System.out.println("in getUser ");
+        Long vehicle_id = null;
+        try {
+            vehicle_id = carService.getCarId();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vehicle_id;
+    }
+
     @RequestMapping(value = "search/{keyword}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<Car> getCars(@PathVariable("keyword") String keyword) {
@@ -76,6 +90,7 @@ public class CarController {
         }
         return cars;
     }
+
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
@@ -162,5 +177,18 @@ public class CarController {
         }
 
         return carList;
+    }
+
+    @RequestMapping(value = "{id}/{price}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    Status validateCar(@PathVariable("id") long id, @PathVariable("price") double price) {
+
+        try {
+            carService.validateCar(id, price);
+            return new Status(1, "Car validated successfully. !");
+        } catch (Exception e) {
+            return new Status(0, e.toString());
+        }
+
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by mahapata on 8/3/2017.
  */
-public class CarServiceImpl implements CarService{
+public class CarServiceImpl implements CarService {
     @Autowired
     private CarDao carDao;
 
@@ -43,6 +43,16 @@ public class CarServiceImpl implements CarService{
     @Override
     public boolean deleteCar(long carId) throws Exception {
         return carDao.deleteEntity(carId);
+    }
+
+    @Override
+    public long getCarId() throws Exception {
+        return carDao.getVehicleEntityId();
+    }
+
+    @Override
+    public boolean validateCar(long id, double price) throws Exception {
+        return carDao.validateCar(id, price);
     }
 
     @Override
