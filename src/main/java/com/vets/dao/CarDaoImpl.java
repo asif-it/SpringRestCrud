@@ -102,9 +102,10 @@ public class CarDaoImpl implements CarDao {
             throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        Query query = session.createQuery("UPDATE Car C set C.price=:price,C.is_validated=1 where id=:id");
+        Query query = session.createQuery("UPDATE Car C set C.price=:price,C.is_validated=1 where C.id=:id");
         query.setParameter("price", price);
         query.setParameter("id", id);
+        query.executeUpdate();
         tx.commit();
         session.close();
         return false;
